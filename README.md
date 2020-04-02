@@ -2,6 +2,10 @@
 
 Simple implementation of a Dijkstra algorithm in Python.
 
+# Notes
+
+I consciously decided not to approach the problem with an adjency list or matrix so that the code can be more intuitive and easy to understand, although being less performatic.
+
 # How to use
 
 Instantiate the Graph class.
