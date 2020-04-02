@@ -14,7 +14,7 @@ Instantiate the Graph class.
 graph = Graph()
 ```
 
-To build your graph, call the add_node methods to create each individual node and its edges. The "neighbors" argument of the add_node method takes a dictionary in which the keys are the node names and values the distance from the node you are creating and that neighbor.
+To build your graph, call the add_node method to create each individual node and its edges. The "neighbors" argument of the add_node method takes a dictionary in which the keys are the node names and values are the distance from the node you are creating and that neighbor.
 
 ```
 graph.add_node(name='A', neighbors={'B': 5, 'C': 4})
