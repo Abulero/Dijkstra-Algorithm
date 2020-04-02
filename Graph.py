@@ -50,9 +50,9 @@ class Graph:
     def dijkstra_solution(self, **kwargs):
         self.start = kwargs['start']
         self.end = kwargs['end']
+
         visited_nodes = []
         current_node = None
-        end_node = None
 
         # Creating a List of Nodes out of the List of Strings
         self.names_to_objects()
@@ -63,7 +63,7 @@ class Graph:
         # Step 2: Calculate the distance between the current node and its neighbors
         # Step 3: Put the current node in the array of visited nodes
         # Step 4: If the end node is marked as visited, end the algorithm
-        # Step 5: Mark the neighbor node closest to the current node as the new current node and go back to Step 2
+        # Step 5: Mark the lowest distance unvisited node as the new current node and go back to Step 2
 
         # Step 1
         for node in self.node_list:
@@ -74,9 +74,6 @@ class Graph:
 
         for i in range(len(self.node_list)):
             # Step 2
-            shortest_distance_from_start = None
-            closest_node = None
-
             if current_node is not None:
                 for neighbor_node, distance in current_node.edges.items():
                     if neighbor_node not in visited_nodes:
@@ -87,10 +84,6 @@ class Graph:
                             neighbor_node.distance_from_start = current_node.distance_from_start + distance
                             neighbor_node.path_origin = current_node
 
-                        if shortest_distance_from_start is None or neighbor_node.distance_from_start < shortest_distance_from_start:
-                            closest_node = neighbor_node
-                            shortest_distance_from_start = neighbor_node.distance_from_start
-
                 # Step 3
                 visited_nodes.append(current_node)
 
@@ -99,6 +92,11 @@ class Graph:
                     break
 
                 # Step 5
-                current_node = closest_node
+                shortest_distance_from_start = None
+                for node in self.node_list:
+                    if node not in visited_nodes and node.distance_from_start is not None:
+                        if shortest_distance_from_start == None or node.distance_from_start < shortest_distance_from_start:
+                            shortest_distance_from_start = node.distance_from_start
+                            current_node = node
 
         self.print_results()
